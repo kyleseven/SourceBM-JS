@@ -1,0 +1,24 @@
+{
+  "name": "sourcebm-js",
+  "version": "1.0.0",
+  "description": "Easily create TF2 chat spam scripts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyleseven/SourceBM-JS.git"
+  },
+  "author": "kyleseven",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyleseven/SourceBM-JS/issues"
+  },
+  "homepage": "https://github.com/kyleseven/SourceBM-JS#readme",
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}
