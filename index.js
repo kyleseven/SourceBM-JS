@@ -1,17 +1,17 @@
-function outputToDocument(name, command, prefix, wait, content) {
+function outputToDocument(name, command, prefix, wait, spamText) {
     // Output bind to bindOutput
     let bindOutput = [];
-    let lines = content.length;
+    let lines = spamText.length;
 
     bindOutput.push(`// ${name}`);
     bindOutput.push('// Created with Source Bindmaker by kyleseven');
     bindOutput.push(`alias "${command}" "${prefix}1"`);
 
     for (i = 0; i < lines - 1; i++) {
-        bindOutput.push(`alias "${prefix}${i + 1}" "say ${content[i]}; wait ${wait}; ${prefix}${i + 2}"`);
+        bindOutput.push(`alias "${prefix}${i + 1}" "say ${spamText[i]}; wait ${wait}; ${prefix}${i + 2}"`);
     }
 
-    bindOutput.push(`alias "${prefix}${(lines - 1) + 1}" "say ${content[lines - 1]}"`)
+    bindOutput.push(`alias "${prefix}${(lines - 1) + 1}" "say ${spamText[lines - 1]}"`)
 
     let newBox = document.createElement('div');
     newBox.id = 'bindBox';
@@ -30,7 +30,7 @@ function outputToDocument(name, command, prefix, wait, content) {
     mainDiv.parentNode.insertBefore(newBox, mainDiv.nextSibling);
 }
 
-function validate(name, command, prefix, wait, content) {
+function validate(name, command, prefix, wait, spamText) {
     event.preventDefault();
     let errors = ["Error:"]
 
@@ -55,7 +55,7 @@ function validate(name, command, prefix, wait, content) {
     if (isNaN(wait)) {
         errors.push("- Wait must be a number.");
     }
-    if (content.length == 0) {
+    if (spamText.length == 0) {
         errors.push("- Content cannot be empty.");
     }
 
@@ -77,10 +77,10 @@ function createBind() {
     let command = document.getElementById('bindCommand').value;
     let prefix = document.getElementById('bindPrefix').value;
     let wait = document.getElementById('bindWaitTime').value;
-    let content = document.getElementById('bindContents').value.split('\n').filter(e => e !== "");
+    let spamText = document.getElementById('bindSpamText').value.split('\n').filter(e => e !== "");
 
     event.preventDefault();
-    if (validate(name, command, prefix, wait, content)) {
-        outputToDocument(name, command, prefix, wait, content);
+    if (validate(name, command, prefix, wait, spamText)) {
+        outputToDocument(name, command, prefix, wait, spamText);
     }
 }
