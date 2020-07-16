@@ -1,5 +1,7 @@
 # Source Bindmaker
 
+[Access on GitHub Pages](https://kyleseven.github.io/SourceBM-JS/)
+
 ## Disclaimer
 
 This is the first time I've ever used HTML, CSS, or JavaScript, so if it seems roughly put together, that's why.
