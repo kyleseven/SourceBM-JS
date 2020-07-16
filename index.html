@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Bindmaker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box-1" id="inputBox">
+            <header>
+                <h1>TF2 Source Bindmaker</h1>
+            </header>
+
+            <!-- Input Fields -->
+            <form> 
+                <label for="bindName">Bind Name:</label>
+                <input type="text" id="bindName" placeholder="Name of your bind" size="20" required><br>
+                
+                <label for="bindCommand">Command:</label>
+                <input type="text" id="bindCommand" placeholder="Command to trigger in the console" size="30" required><br>
+
+                <label for="bindPrefix">Prefix:</label>
+                <input type="text" id="bindPrefix" placeholder="3 to 5 letter prefix" size="20" required><br>
+                
+                <label for="bindWaitTime">Wait Time:</label>
+                <input type="number" id="bindWaitTime" placeholder="Time between lines" required><br>
+
+                <label for="bindContents">Bind Contents:</label><br>
+                <textarea name="Bind Contents" id="bindContents" rows="10" required></textarea><br>
+                
+                <input type="submit" value="Create spam bind, you monster." onclick="createBind()">
+            </form>
+            <script src="index.js"></script>
+        </div>
+    </div>
+</body>
+</html>
