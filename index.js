@@ -3,15 +3,15 @@ function outputToDocument(name, command, prefix, wait, content) {
     let bindOutput = [];
     let lines = content.length;
 
-    bindOutput.push(`// ${name}\n`);
+    bindOutput.push(`// ${name}`);
     bindOutput.push('// Created with Source Bindmaker by kyleseven');
-    bindOutput.push(`alias "${command}" "${prefix}1"\n`);
+    bindOutput.push(`alias "${command}" "${prefix}1"`);
 
     for (i = 0; i < lines - 1; i++) {
-        bindOutput.push(`alias "${prefix}${i + 1}" "say ${content[i]}; wait ${wait}; ${prefix}${i + 2}"\n`);
+        bindOutput.push(`alias "${prefix}${i + 1}" "say ${content[i]}; wait ${wait}; ${prefix}${i + 2}"`);
     }
 
-    bindOutput.push(`alias "${prefix}${(lines - 1) + 1}" "say ${content[lines - 1]}"\n`)
+    bindOutput.push(`alias "${prefix}${(lines - 1) + 1}" "say ${content[lines - 1]}"`)
 
     let newBox = document.createElement('div');
     newBox.id = 'bindBox';
