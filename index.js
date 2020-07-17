@@ -65,6 +65,9 @@ function validate(name, command, prefix, wait, spamText) {
   if (Number.isNaN(wait)) {
     errors.push('- Wait must be a number.');
   }
+  if (wait < 0) {
+    errors.push('- Wait cannot be negative.');
+  }
   if (spamText.length === 0) {
     errors.push('- Content cannot be empty.');
   }
