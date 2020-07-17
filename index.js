@@ -69,7 +69,7 @@ function validate(name, command, prefix, wait, spamText) {
     errors.push('- Wait cannot be negative.');
   }
   if (spamText.length === 0) {
-    errors.push('- Content cannot be empty.');
+    errors.push('- Spam text cannot be empty.');
   }
 
   let alertMsg = '';
