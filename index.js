@@ -86,9 +86,9 @@ function validate(name, command, prefix, wait, spamText) {
 
 function createBind() { // eslint-disable-line no-unused-vars
   // Bind properties
-  const name = document.getElementById('bindName').value;
-  const command = document.getElementById('bindCommand').value;
-  const prefix = document.getElementById('bindPrefix').value;
+  const name = document.getElementById('bindName').value.trim();
+  const command = document.getElementById('bindCommand').value.trim();
+  const prefix = document.getElementById('bindPrefix').value.trim();
   const wait = document.getElementById('bindWaitTime').value;
   const type = document.getElementById('type').value;
   const spamText = document.getElementById('bindSpamText').value.split('\n').filter((e) => e !== '');
