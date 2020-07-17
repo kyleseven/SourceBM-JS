@@ -1,17 +1,27 @@
-function outputToDocument(name, command, prefix, wait, spamText) {
+function outputToDocument(name, command, prefix, wait, type, spamText) {
   // Output bind to bindOutput
   const bindOutput = [];
   const lines = spamText.length;
 
   bindOutput.push(`// ${name}`);
   bindOutput.push('// Created with Source Bindmaker by kyleseven');
-  bindOutput.push(`alias "${command}" "${prefix}1"`);
+  if (type === 'normal') {
+    bindOutput.push(`alias "${command}" "${prefix}1"`);
+  } else {
+    bindOutput.push(`alias "${command}" "start_${prefix}"`);
+    bindOutput.push(`alias "start_${prefix}" "alias "${command}" "stop_${prefix}"; alias "redir_${prefix}" "${prefix}1"; ${prefix}1"`);
+    bindOutput.push(`alias "stop_${prefix}" "alias redir_${prefix} ""; alias "${command}" "start_${prefix}""`);
+  }
 
   for (let i = 0; i < lines - 1; i += 1) {
     bindOutput.push(`alias "${prefix}${i + 1}" "say ${spamText[i]}; wait ${wait}; ${prefix}${i + 2}"`);
   }
 
-  bindOutput.push(`alias "${prefix}${lines - 1 + 1}" "say ${spamText[lines - 1]}"`);
+  if (type === 'normal') {
+    bindOutput.push(`alias "${prefix}${lines}" "say ${spamText[lines - 1]}"`);
+  } else {
+    bindOutput.push(`alias "${prefix}${lines}" "say ${spamText[lines - 1]}; wait ${wait}; redir_${prefix}"`);
+  }
 
   const newBox = document.createElement('div');
   newBox.id = 'bindBox';
@@ -77,10 +87,11 @@ function createBind() { // eslint-disable-line no-unused-vars
   const command = document.getElementById('bindCommand').value;
   const prefix = document.getElementById('bindPrefix').value;
   const wait = document.getElementById('bindWaitTime').value;
+  const type = document.getElementById('type').value;
   const spamText = document.getElementById('bindSpamText').value.split('\n').filter((e) => e !== '');
 
   window.event.preventDefault();
   if (validate(name, command, prefix, wait, spamText)) {
-    outputToDocument(name, command, prefix, wait, spamText);
+    outputToDocument(name, command, prefix, wait, type, spamText);
   }
 }
