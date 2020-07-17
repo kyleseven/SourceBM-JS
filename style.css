@@ -6,6 +6,16 @@ h1 {
   font-family: 'SF Pro Display', Arial, Helvetica, sans-serif;
 }
 
+label {
+  display: inline-block;
+  width:100px;
+  text-align: left;
+}
+
+input[type=text], input[type=number] {
+  width: 20em;
+}
+
 .container {
   width: 80%;
   margin: auto;
