@@ -27,9 +27,7 @@ function outputToDocument(name, command, prefix, wait, type, spamText) {
   newBox.id = 'bindBox';
   newBox.className = 'box-2';
 
-  for (let i = 0; i < bindOutput.length; i += 1) {
-    newBox.innerHTML += `${bindOutput[i]}<br>`;
-  }
+  bindOutput.forEach((value) => { newBox.innerHTML += `${value}<br>`; });
 
   // Remove the old bindBox if it exists, then add the new one
   if (document.getElementById('bindBox')) {
@@ -43,33 +41,33 @@ function outputToDocument(name, command, prefix, wait, type, spamText) {
 function validate(name, command, prefix, wait, spamText) {
   window.event.preventDefault();
   const errors = ['Error:'];
+  const vars = [name, command, prefix, wait];
+  const names = ['Name', 'Command', 'Prefix', 'Wait Time'];
 
-  if (!name) {
-    errors.push('- Name cannot be empty.');
+  // Check if empty
+  vars.forEach((property, index) => {
+    const propertyName = names[index];
+    if (!property) {
+      errors.push(`- ${propertyName} cannot be empty.`);
+    }
+  });
+  if (spamText.length === 0) {
+    errors.push('- Spam text cannot be empty.');
   }
-  if (!command) {
-    errors.push('- Command cannot be empty.');
-  }
+
+  // Check for spaces
   if (command.indexOf(' ') >= 0) {
     errors.push('- Command cannot contain spaces.');
-  }
-  if (!prefix) {
-    errors.push('- Prefix cannot be empty.');
   }
   if (prefix.indexOf(' ') >= 0) {
     errors.push('- Prefix cannot contain spaces.');
   }
-  if (!wait) {
-    errors.push('- Wait cannot be empty.');
-  }
+  // Check if wait is NaN or negative
   if (Number.isNaN(wait)) {
     errors.push('- Wait must be a number.');
   }
   if (wait < 0) {
     errors.push('- Wait cannot be negative.');
-  }
-  if (spamText.length === 0) {
-    errors.push('- Spam text cannot be empty.');
   }
 
   let alertMsg = '';
