@@ -1,3 +1,13 @@
+/**
+ * Creates a TF2 chat spam script from the arguments and outputs it to the page.
+ *
+ * @param {string} name - The name of the bind
+ * @param {string} command - The command that triggers the bind
+ * @param {string} prefix - The prefix of the bind chain
+ * @param {number} wait - The number of frames to wait between each line
+ * @param {string} type - The type of bind, can be 'normal' or 'loop'
+ * @param {Array} spamText - An array containing each line of spam text
+ */
 function outputToDocument(name, command, prefix, wait, type, spamText) {
   // Output bind to bindOutput
   const bindOutput = [];
@@ -38,6 +48,17 @@ function outputToDocument(name, command, prefix, wait, type, spamText) {
   mainDiv.parentNode.insertBefore(newBox, mainDiv.nextSibling);
 }
 
+/**
+ * Validates the input from the user
+ *
+ * @param {string} name - Name of the bind
+ * @param {string} command - The command that triggers the bind
+ * @param {string} prefix - The prefix of the bind chain
+ * @param {number} wait - The number of frames to wait between each line
+ * @param {Array} spamText - An array containing each line of spam text
+ *
+ * @returns {boolean} true if no errors, false if there are errors
+ */
 function validate(name, command, prefix, wait, spamText) {
   window.event.preventDefault();
   const errors = ['Error:'];
@@ -82,6 +103,10 @@ function validate(name, command, prefix, wait, spamText) {
   return errors.length === 1;
 }
 
+/**
+ * Triggered when the user presses the create spam script button.
+ * Retrieves information from the form and passes the values to validate() and outputToDocument()
+ */
 function createBind() { // eslint-disable-line no-unused-vars
   // Bind properties
   const name = document.getElementById('bindName').value.trim();
